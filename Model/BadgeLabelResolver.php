@@ -42,6 +42,7 @@ class BadgeLabelResolver
     /**
      * @param int $storeId
      * @return array<int, string>
+     * @throws LocalizedException
      */
     private function getLabelsForStore(int $storeId): array
     {

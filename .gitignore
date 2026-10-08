@@ -1,0 +1,3 @@
+# PhpStorm HTTP client environment files (local machine only)
+http-client.env.json
+http-client.private.env.json

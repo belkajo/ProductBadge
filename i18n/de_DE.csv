@@ -1,0 +1,4 @@
+"In stock","Auf Lager"
+"Out of stock","Nicht auf Lager"
+"Required parameter ""sku"" is missing.","Der erforderliche Parameter ""sku"" fehlt."
+"The product with the ""%1"" SKU does not exist.","Das Produkt mit der SKU ""%1"" existiert nicht."

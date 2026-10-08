@@ -1,0 +1,64 @@
+# GraphQL requests for the Belkajo_ProductBadge module.
+# PhpStorm HTTP client: place the caret on a request and hit "Run".
+#
+# The store view is selected with the "Store" header (store view code),
+# so the badge label comes back in the language of that store view.
+
+@sku = 24-MB01
+
+### productDetails - EN store view (badge: New)
+POST {{host}}/graphql
+Content-Type: application/json
+Store: en
+
+{
+  "query": "query productDetails($sku: String!) { productDetails(sku: $sku) { sku name price currency stock_status badge } }",
+  "variables": {
+    "sku": "{{sku}}"
+  }
+}
+
+### productDetails - FR store view (badge: Nouveau)
+POST {{host}}/graphql
+Content-Type: application/json
+Store: fr
+
+{
+  "query": "query productDetails($sku: String!) { productDetails(sku: $sku) { sku name price currency stock_status badge } }",
+  "variables": {
+    "sku": "{{sku}}"
+  }
+}
+
+### productDetails - DE store view (badge: Neu)
+POST {{host}}/graphql
+Content-Type: application/json
+Store: de
+
+{
+  "query": "query productDetails($sku: String!) { productDetails(sku: $sku) { sku name price currency stock_status badge } }",
+  "variables": {
+    "sku": "{{sku}}"
+  }
+}
+
+### productDetails - invalid SKU (should fail gracefully, not a 500)
+POST {{host}}/graphql
+Content-Type: application/json
+Store: en
+
+{
+  "query": "query productDetails($sku: String!) { productDetails(sku: $sku) { sku name badge } }",
+  "variables": {
+    "sku": "does-not-exist"
+  }
+}
+
+### Name rendering - standard products query (product name should end with [Badge])
+POST {{host}}/graphql
+Content-Type: application/json
+Store: en
+
+{
+  "query": "{ products(filter: { sku: { eq: \"{{sku}}\" } }) { items { sku name } } }"
+}

@@ -1,0 +1,14 @@
+type Query {
+    productDetails(sku: String!): ProductDetails
+        @resolver(class: "Belkajo\\ProductBadge\\Model\\Resolver\\ProductDetails")
+        @doc(description: "Return the details of a single product by SKU for the current store view.")
+}
+
+type ProductDetails {
+    sku: String @doc(description: "The product SKU.")
+    name: String @doc(description: "The product name, including the badge.")
+    price: Float @doc(description: "The product price in the current store view currency.")
+    currency: String @doc(description: "The currency code of the current store view.")
+    stock_status: String @doc(description: "In stock / Out of stock.")
+    badge: String @doc(description: "The badge label translated for the current store view.")
+}
