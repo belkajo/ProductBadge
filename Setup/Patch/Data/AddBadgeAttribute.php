@@ -60,9 +60,6 @@ class AddBadgeAttribute implements DataPatchInterface, PatchRevertableInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function revert()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
@@ -74,17 +71,11 @@ class AddBadgeAttribute implements DataPatchInterface, PatchRevertableInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getDependencies()
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAliases()
     {
         return [];

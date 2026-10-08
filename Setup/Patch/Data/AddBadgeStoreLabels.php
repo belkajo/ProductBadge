@@ -14,9 +14,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 class AddBadgeStoreLabels implements DataPatchInterface
 {
-    /**
-     * Store view code => [default (English) option label => localized label].
-     */
+
     private const STORE_LABELS = [
         'en' => [
             'New' => 'New',
@@ -47,7 +45,7 @@ class AddBadgeStoreLabels implements DataPatchInterface
 
         /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $attributeId = $eavSetup->getAttributeId(Product::ENTITY, AddBadgeAttribute::ATTRIBUTE_CODE);
+        $attributeId = (int)$eavSetup->getAttributeId(Product::ENTITY, AddBadgeAttribute::ATTRIBUTE_CODE);
 
         if (!$attributeId) {
             throw new LocalizedException(
@@ -84,12 +82,6 @@ class AddBadgeStoreLabels implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
-    /**
-     * Resolve the configured store view codes to store ids.
-     *
-     * @return array<string, int>
-     * @throws LocalizedException
-     */
     private function getStoreIdsByCode(): array
     {
         $connection = $this->moduleDataSetup->getConnection();
@@ -112,12 +104,6 @@ class AddBadgeStoreLabels implements DataPatchInterface
         return $storeIds;
     }
 
-    /**
-     * Get the existing dropdown options keyed by their default (store id 0) label.
-     *
-     * @param int $attributeId
-     * @return array<string, array{option_id: int, sort_order: int}>
-     */
     private function getOptions(int $attributeId): array
     {
         $connection = $this->moduleDataSetup->getConnection();
@@ -142,9 +128,6 @@ class AddBadgeStoreLabels implements DataPatchInterface
         return $options;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getDependencies()
     {
         return [
@@ -152,9 +135,6 @@ class AddBadgeStoreLabels implements DataPatchInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAliases()
     {
         return [];
